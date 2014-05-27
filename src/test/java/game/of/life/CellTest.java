@@ -37,7 +37,8 @@ public class CellTest {
 		CellState initialState = CellState.valueOf(initial);
 		Cell uut = new Cell(initialState);
 		
-		CellState actual = uut.GetNextState(numberOfNeighbors);
+		uut.update(numberOfNeighbors);
+		CellState actual = uut.getState();
 		
 		CellState expectedState = CellState.valueOf(expected);
 		assertEquals(expectedState, actual);

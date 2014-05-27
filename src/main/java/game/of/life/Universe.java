@@ -27,4 +27,48 @@ public class Universe {
 		return cellStates;
 	}
 
+	public void update() {
+		CellState[][] cellStates = getState();
+		for (int row = 0; row < state.length; row++) {
+			for (int col = 0; col < state[row].length; col++) {
+				int numberOfAliveNeighbors = getNumberOfAliveNeighbors(cellStates, row, col);
+				state[row][col].update(numberOfAliveNeighbors);
+			}
+		}
+	}
+
+	private int getNumberOfAliveNeighbors(CellState[][] state, int row, int col) {
+		int numberOfAliveNeighbor = 0;		
+		if (row > 0) {
+			int rowAbove = row - 1;
+			if (col > 0) {
+				if (state[rowAbove][col - 1] == CellState.ALIVE) numberOfAliveNeighbor ++;
+			}
+			if (state[rowAbove][col] == CellState.ALIVE) numberOfAliveNeighbor++;
+			if (col < state[row].length - 1) {
+				if (state[rowAbove][col + 1] == CellState.ALIVE) numberOfAliveNeighbor++;
+			}
+		}
+		
+		if (col > 0) {
+			if (state[row][col - 1] == CellState.ALIVE) numberOfAliveNeighbor ++;
+		}
+		if (col < state[row].length - 1) {
+			if (state[row][col + 1] == CellState.ALIVE) numberOfAliveNeighbor++;
+		}
+		
+		if (row < state.length - 1) {
+			int rowBelow = row + 1;
+			if (col > 0) {
+				if (state[rowBelow][col - 1] == CellState.ALIVE) numberOfAliveNeighbor ++;
+			}
+			if (state[rowBelow][col] == CellState.ALIVE) numberOfAliveNeighbor++;
+			if (col < state[row].length - 1) {
+				if (state[rowBelow][col + 1] == CellState.ALIVE) numberOfAliveNeighbor++;
+			}
+		}
+		
+		return numberOfAliveNeighbor;
+	}
+
 }
