@@ -29,8 +29,7 @@ public class UniverseTest {
 	public void shouldUpdateCell() {
 		Universe uut = new Universe(new CellState[][] { { X } });
 		
-		uut.update();
-		CellState[][] actual = uut.getState();
+		CellState[][] actual = getNextState(uut);
 		
 		assertEquals(CellState.DEAD, actual[0][0]);
 	}
@@ -48,10 +47,32 @@ public class UniverseTest {
 			{ O, X, O }
 		};
 		
-		uut.update();
-		CellState[][] actual = uut.getState();
+		CellState[][] actual = getNextState(uut);
 		
 		assertArrayEquals(expected, actual);
+	}
+	
+	@Test
+	public void shouldConsiderAllNeighbors() {
+		Universe uut = new Universe(new CellState[][] {
+			{ X, X, X },
+			{ X, X, X },
+			{ X, X, X }
+		});
+		CellState[][] expected = new CellState[][] {
+			{ X, O, X },
+			{ O, O, O },
+			{ X, O, X }
+		};
+		
+		CellState[][] actual = getNextState(uut);
+		
+		assertArrayEquals(expected, actual);
+	}
+
+	private CellState[][] getNextState(Universe uut) {
+		uut.update();
+		return uut.getState();
 	}
 	
 }

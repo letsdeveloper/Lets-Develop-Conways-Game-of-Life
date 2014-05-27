@@ -5,7 +5,7 @@ import game.of.life.Cell.CellState;
 public class Universe {
 
 	private Cell[][] state;
-	
+
 	public Universe(CellState[][] cellStates) {
 		state = new Cell[cellStates.length][];
 		for (int row = 0; row < cellStates.length; row++) {
@@ -38,37 +38,40 @@ public class Universe {
 	}
 
 	private int getNumberOfAliveNeighbors(CellState[][] state, int row, int col) {
-		int numberOfAliveNeighbor = 0;		
+		int numberOfAliveNeighbor = 0;
 		if (row > 0) {
 			int rowAbove = row - 1;
-			if (col > 0) {
-				if (state[rowAbove][col - 1] == CellState.ALIVE) numberOfAliveNeighbor ++;
-			}
-			if (state[rowAbove][col] == CellState.ALIVE) numberOfAliveNeighbor++;
-			if (col < state[row].length - 1) {
-				if (state[rowAbove][col + 1] == CellState.ALIVE) numberOfAliveNeighbor++;
-			}
+			numberOfAliveNeighbor += getNumberOfAliveNeighborsInRow(state, rowAbove, col);
 		}
-		
-		if (col > 0) {
-			if (state[row][col - 1] == CellState.ALIVE) numberOfAliveNeighbor ++;
-		}
-		if (col < state[row].length - 1) {
-			if (state[row][col + 1] == CellState.ALIVE) numberOfAliveNeighbor++;
-		}
-		
+
+		numberOfAliveNeighbor += getCountIfCellIsAlive(state, row, col - 1);
+		numberOfAliveNeighbor += getCountIfCellIsAlive(state, row, col + 1);
+
 		if (row < state.length - 1) {
 			int rowBelow = row + 1;
-			if (col > 0) {
-				if (state[rowBelow][col - 1] == CellState.ALIVE) numberOfAliveNeighbor ++;
-			}
-			if (state[rowBelow][col] == CellState.ALIVE) numberOfAliveNeighbor++;
-			if (col < state[row].length - 1) {
-				if (state[rowBelow][col + 1] == CellState.ALIVE) numberOfAliveNeighbor++;
+			numberOfAliveNeighbor += getNumberOfAliveNeighborsInRow(state, rowBelow, col);
+		}
+
+		return numberOfAliveNeighbor;
+	}
+
+	private int getNumberOfAliveNeighborsInRow(CellState[][] state, int row, int col) {
+		int numberOfAliveNeighbor = 0;
+		numberOfAliveNeighbor += getCountIfCellIsAlive(state, row, col - 1);
+		if (state[row][col] == CellState.ALIVE) {
+			numberOfAliveNeighbor++;
+		}
+		numberOfAliveNeighbor += getCountIfCellIsAlive(state, row, col + 1);
+		return numberOfAliveNeighbor;
+	}
+
+	private int getCountIfCellIsAlive(CellState[][] state, int row, int col) {
+		if (col >= 0 && col < state[row].length) {
+			if (state[row][col + 1] == CellState.ALIVE) {
+				return 1;
 			}
 		}
-		
-		return numberOfAliveNeighbor;
+		return 0;
 	}
 
 }
