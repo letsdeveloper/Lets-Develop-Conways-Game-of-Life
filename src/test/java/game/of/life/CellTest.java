@@ -22,7 +22,7 @@ public class CellTest {
 		"ALIVE, 5, DEAD",
 		"ALIVE, 6, DEAD",
 		"ALIVE, 7, DEAD",
-		"ALIVE, 9, DEAD",
+		"ALIVE, 8, DEAD",
 		"DEAD, 0, DEAD",
 		"DEAD, 1, DEAD",
 		"DEAD, 2, DEAD",
@@ -31,7 +31,7 @@ public class CellTest {
 		"DEAD, 5, DEAD",
 		"DEAD, 6, DEAD",
 		"DEAD, 7, DEAD",
-		"DEAD, 9, DEAD"
+		"DEAD, 8, DEAD"
 		})
 	public void ShouldFullfillTransition(String initial, int numberOfNeighbors, String expected){
 		CellState initialState = CellState.valueOf(initial);
