@@ -23,4 +23,8 @@ public class Cell {
 	public CellState getState() {
 		return state;
 	}
+
+	boolean isAlive() {
+		return getState() == CellState.ALIVE;
+	}
 }
