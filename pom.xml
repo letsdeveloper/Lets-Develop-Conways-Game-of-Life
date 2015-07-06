@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>com.letsdeveloper.games</groupId>
 			<artifactId>gameloop</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<repositories>
@@ -29,7 +29,7 @@
 		</repository>
 		<repository>
 			<id>letsdeveloper.maven.snapshots</id>
-			<url>http://maven.letsdeveloper.com/snapshots/</url>
+			<url>https://raw.github.com/letsdeveloper/maven-repo/master/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
