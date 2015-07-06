@@ -16,7 +16,18 @@
 			<version>1.0.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.letsdeveloper.games</groupId>
+			<artifactId>gameloop</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>letsdeveloper.maven.releases</id>
+			<url>http://maven.letsdeveloper.com/release/</url>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
